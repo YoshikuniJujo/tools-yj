@@ -6,7 +6,7 @@ author:              "Yoshikuni Jujo"
 maintainer:          "yoshikuni.jujo@gmail.com"
 copyright:           "Copyright (c) 2023 Yoshikuni Jujo"
 
-extra-source-files:
+extra-doc-files:
 - README.md
 - CHANGELOG.md
 
