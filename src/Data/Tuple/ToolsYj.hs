@@ -1,11 +1,14 @@
 {-# OPTIONS_GHC -Wall -fno-warn-tabs #-}
 
 module Data.Tuple.ToolsYj (
-	uncurryDup,
+	uncurry3, uncurryDup,
 	mapTup3, appTup3, mapTup3M, appTup3M, mapTup3M_, appTup3M_
 	) where
 
 import Control.Monad
+
+uncurry3 :: (a -> b -> c -> d) -> (a, b, c) -> d
+uncurry3 f (x, y, z) = f x y z
 
 uncurryDup :: (a -> b -> c -> d) -> ((a, b), c) -> d
 uncurryDup = uncurry . uncurry
