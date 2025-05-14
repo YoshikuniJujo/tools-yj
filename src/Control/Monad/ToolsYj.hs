@@ -2,6 +2,7 @@
 
 module Control.Monad.ToolsYj where
 
+import Control.Monad.Fix
 import Data.Bool
 
 whenDef :: Applicative m => a -> Bool -> m a -> m a
@@ -12,3 +13,6 @@ whenMaybe = flip . maybe $ pure ()
 
 whenMaybeDef :: Applicative m => b -> Maybe a -> (a -> m b) -> m b
 whenMaybeDef = flip . maybe . pure
+
+doWhile_ :: Monad m => m Bool -> m ()
+doWhile_ a = fix $ (a >>=) . bool (pure ())
