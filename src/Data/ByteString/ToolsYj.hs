@@ -5,7 +5,9 @@
 
 module Data.ByteString.ToolsYj (
 
-	fromBits, fromBits', toBits, toBits'
+	fromBits, fromBits', toBits, toBits',
+
+	toBitsBE
 
 	) where
 
@@ -32,3 +34,6 @@ toBits' bs = bool
 	Nothing
 	(Just $ BS.foldr (\b s -> bitsToBits 8 b .|. s `shiftL` 8) zeroBits bs)
 	(8 * BS.length bs <= finiteBitSize @b undefined)
+
+toBitsBE :: Bits b => BS.ByteString -> b
+toBitsBE = BS.foldl (\s b -> bitsToBits 8 b .|. s `shiftL` 8) zeroBits
