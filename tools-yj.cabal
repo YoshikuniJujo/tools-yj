@@ -5,7 +5,7 @@ cabal-version: 2.2
 -- see: https://github.com/sol/hpack
 
 name:           tools-yj
-version:        0.1.0.27
+version:        0.1.0.28
 synopsis:       Tribial tools
 description:    Please see the README on GitHub at <https://github.com/YoshikuniJujo/tools-yj#readme>
 category:       Tools
