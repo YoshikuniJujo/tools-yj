@@ -31,6 +31,7 @@ library
       Control.Monad.ToolsYj
       Data.Bits.ToolsYj
       Data.Bool.ToolsYj
+      Data.ByteString.Lazy.ToolsYj
       Data.ByteString.ToolsYj
       Data.Either.ToolsYj
       Data.Function.ToolsYj
