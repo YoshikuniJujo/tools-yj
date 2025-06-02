@@ -5,9 +5,17 @@
 
 module Data.ByteString.ToolsYj (
 
+	-- * FROM/TO BITS
+
 	fromBits, fromBits', toBits, toBits',
 
-	fromBitsBE', toBitsBE, splitAt'
+	-- * FROM/TO BITS -- BIG ENDIEN
+
+	fromBitsBE', toBitsBE,
+
+	-- * SPLIT AT
+
+	splitAt'
 
 	) where
 
