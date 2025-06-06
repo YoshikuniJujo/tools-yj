@@ -5,7 +5,7 @@ cabal-version: 2.2
 -- see: https://github.com/sol/hpack
 
 name:           tools-yj
-version:        0.1.0.32
+version:        0.1.0.33
 synopsis:       Tribial tools
 description:    Please see the README on GitHub at <https://github.com/YoshikuniJujo/tools-yj#readme>
 category:       Tools
@@ -39,6 +39,7 @@ library
       Data.List.ToolsYj
       Data.Maybe.ToolsYj
       Data.Ord.ToolsYj
+      Data.Sequence.ToolsYj
       Data.Sequences.ToolsYj
       Data.Text.ToolsYj
       Data.Tuple.ToolsYj
