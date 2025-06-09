@@ -24,8 +24,8 @@ step (n, A a b) w = case n of
 
 data A = A !Word32 !Word32 deriving (Show, Eq)
 
-initial :: A
-initial = A 1 0
+initial :: (Int, A)
+initial = (5551, A 1 0)
 
 fromWord32 :: Word32 -> A
 fromWord32 w = A (w .&. 0xffff) (w `shiftR` 16)
