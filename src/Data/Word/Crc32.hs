@@ -4,6 +4,7 @@
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE TypeOperators #-}
 {-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# OPTIONS_GHC -Wall -fno-warn-tabs #-}
 
 module Data.Word.Crc32 (
@@ -20,7 +21,8 @@ import Data.Array
 import Data.Bool
 import Data.Word
 
-newtype C = C { unC :: Word32 } deriving (Show, Eq)
+newtype C = C { unC :: Word32 }
+	deriving (Show, Eq, Bits, FiniteBits)
 
 fromWord :: Word32 -> C
 fromWord = C
