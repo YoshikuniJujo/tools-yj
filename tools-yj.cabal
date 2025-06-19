@@ -46,6 +46,7 @@ library
       Data.Tuple.ToolsYj
       Data.Word.Adler32
       Data.Word.Crc32
+      Foreign.C.ByteArray
       Text.Show.ToolsYj
   other-modules:
       Paths_tools_yj
