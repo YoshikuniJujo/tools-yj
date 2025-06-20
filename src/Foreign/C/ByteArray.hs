@@ -1,23 +1,36 @@
 {-# LANGUAGE ImportQualifiedPost #-}
+{-# LANGUAGE TupleSections #-}
 {-# OPTIONS_GHC -Wall -fno-warn-tabs #-}
 
 module Foreign.C.ByteArray where
 
-import Foreign.Ptr
+import Foreign.Ptr qualified as Ptr
+import Foreign.Marshal.Alloc qualified as Alloc
 import Foreign.C.String
 import Data.Word
 import Data.ByteString qualified as BS
 
-type CByteArray = (Ptr Word8, Int)
+type B = (Ptr.Ptr Word8, Int)
 
-fromCStringLen :: CStringLen -> CByteArray
-fromCStringLen (p, n) = (castPtr p, n)
+malloc :: Int -> IO B
+malloc n = (, n) <$> Alloc.mallocBytes n
 
-toCStringLen :: CByteArray -> CStringLen
-toCStringLen (p, n) = (castPtr p, n)
+free :: B -> IO ()
+free = Alloc.free . fst
 
-packToByteString :: CByteArray -> IO BS.ByteString
+splitAt :: Int -> B -> Maybe (B, B)
+splitAt n (p, ln)
+	| n < 0 || ln < n = Nothing
+	| otherwise = Just ((p, n), (p `Ptr.plusPtr` n, ln - n))
+
+fromCStringLen :: CStringLen -> B
+fromCStringLen (p, n) = (Ptr.castPtr p, n)
+
+toCStringLen :: B -> CStringLen
+toCStringLen (p, n) = (Ptr.castPtr p, n)
+
+packToByteString :: B -> IO BS.ByteString
 packToByteString = BS.packCStringLen . toCStringLen
 
-useAsFromByteString :: BS.ByteString -> (CByteArray -> IO a) -> IO a
+useAsFromByteString :: BS.ByteString -> (B -> IO a) -> IO a
 useAsFromByteString bs f = BS.useAsCStringLen bs $ f . fromCStringLen
