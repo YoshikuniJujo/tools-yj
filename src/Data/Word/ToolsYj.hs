@@ -12,6 +12,12 @@ import Data.Word
 
 newtype Word4 = Word4_ { unWord4 :: Word8 }
 
+instance Show Word4 where
+	showsPrec p x = showsPrec p (fromIntegral x :: Int)
+
+instance Read Word4 where
+	readsPrec p s = [(fromIntegral (x :: Int), r) | (x, r) <- readsPrec p s]
+
 instance Bits Word4 where
 	Word4_ w1 .&. Word4_ w2 = Word4_ $ w1 .&. w2
 	Word4_ w1 .|. Word4_ w2 = Word4_ $ w1 .|. w2
