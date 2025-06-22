@@ -15,6 +15,9 @@ type B = (Ptr.Ptr Word8, Int)
 malloc :: Int -> IO B
 malloc n = (, n) <$> Alloc.mallocBytes n
 
+alloca :: Int -> (B -> IO a) -> IO a
+alloca n a = Alloc.allocaBytes n $ a . (, n)
+
 free :: B -> IO ()
 free = Alloc.free . fst
 
