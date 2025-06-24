@@ -47,6 +47,7 @@ library
       Data.Word.Adler32
       Data.Word.Crc32
       Data.Word.ToolsYj
+      Data.Word.Word8
       Foreign.C.ByteArray
       Text.Show.ToolsYj
   other-modules:
