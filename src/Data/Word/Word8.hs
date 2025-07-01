@@ -23,3 +23,11 @@ toBits' bs = bool
 
 toBitsBE :: (MonoFoldable mono, Element mono ~ Word8, Bits b) => mono -> b
 toBitsBE = ofoldl' (\s b -> bitsToBits 8 b .|. s `shiftL` 8) zeroBits
+
+toBitsBE' :: forall b mono .
+	(MonoFoldable mono, Element mono ~ Word8, FiniteBits b) =>
+	mono -> Maybe b
+toBitsBE' bs = bool
+	Nothing
+	(Just $ ofoldl' (\s b -> bitsToBits 8 b .|. s `shiftL` 8) zeroBits bs)
+	(8 * olength bs <= finiteBitSize @b undefined)
